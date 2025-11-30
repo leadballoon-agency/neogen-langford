@@ -9,16 +9,16 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50: '#f0f9f6',
-          100: '#d9f0e8',
-          200: '#b3e0d1',
-          300: '#7fc9b3',
-          400: '#4aab8f',
-          500: '#2a8f73',  // Deep teal - main brand color
-          600: '#1f7560',
-          700: '#1a5f4e',
-          800: '#164a3e',
-          900: '#123d33',
+          50: '#edfcfb',
+          100: '#d2f7f4',
+          200: '#a9efeb',
+          300: '#72e2dd',
+          400: '#3accc6',
+          500: '#04aa9d',  // Louise's main site color
+          600: '#048a80',
+          700: '#086f68',
+          800: '#0b5854',
+          900: '#0e4946',
         },
         gold: {
           50: '#fdf9ef',

@@ -1,13 +1,30 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+
 interface AboutSectionProps {
   onBookingClick?: () => void
 }
 
 export default function AboutSection({ onBookingClick }: AboutSectionProps) {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+
+  // Handle body overflow when modal is open
+  useEffect(() => {
+    if (isVideoModalOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isVideoModalOpen])
+
   const practitioners = [
     {
       name: 'Louise Langford',
       title: 'Founder & Neogen Specialist',
-      image: '/images/louise in clinic.jpg',
       bio: 'With over 30 years of experience in aesthetics, Louise Langford is one of the UK\'s leading Neogen Plasma specialists. As the founder of The Langford Skin Clinic, a doctor-led practice, she brings unparalleled expertise and a personalised approach to every treatment. Her clinic is trusted by celebrities including Strictly\'s Shirley Ballas, who chose The Langford Skin Clinic for her own Neogen transformation.',
       qualifications: [
         '30+ Years Experience',
@@ -35,15 +52,28 @@ export default function AboutSection({ onBookingClick }: AboutSectionProps) {
         <div className="flex justify-center">
           {practitioners.map((practitioner, index) => (
             <div key={index} className="w-full max-w-2xl bg-gradient-to-br from-white to-primary-50/30 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-premium hover:shadow-premium-lg transition-all duration-300">
-              {/* Practitioner Image */}
+              {/* Practitioner Video Thumbnail */}
               <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg mb-6 max-w-md mx-auto">
                 <div className="aspect-[4/5] relative">
                   <img
-                    src={practitioner.image}
+                    src="/images/louise in clinic.jpg"
                     alt={`${practitioner.name} - ${practitioner.title}`}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary-100/10 to-primary-300/10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-100/10 to-primary-300/10 pointer-events-none"></div>
+
+                  {/* Play Button - Opens Modal */}
+                  <button
+                    onClick={() => setIsVideoModalOpen(true)}
+                    className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer"
+                    aria-label="Play video"
+                  >
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                      <svg className="w-8 h-8 sm:w-10 sm:h-10 text-primary-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </button>
                 </div>
               </div>
 
@@ -94,6 +124,41 @@ export default function AboutSection({ onBookingClick }: AboutSectionProps) {
           </button>
         </div>
       </div>
+
+      {/* Video Modal */}
+      {isVideoModalOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsVideoModalOpen(false)}
+        >
+          {/* Modal Container */}
+          <div
+            className="relative bg-black rounded-2xl shadow-2xl overflow-hidden max-w-2xl w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsVideoModalOpen(false)}
+              className="absolute top-3 right-3 z-10 w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+              aria-label="Close video"
+            >
+              <svg className="w-4 h-4 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Video */}
+            <video
+              autoPlay
+              controls
+              playsInline
+              className="w-full"
+            >
+              <source src="https://storage.googleapis.com/msgsndr/rqUmK56dJu0sV3O0FpnV/media/692ca61e82f4c569bf2e7ebf.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

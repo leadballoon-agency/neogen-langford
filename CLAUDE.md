@@ -4,17 +4,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Neogen Plasma treatment landing page for The Langford Skin Clinic, built with Next.js 15, TypeScript, and Tailwind CSS. This is a client-specific customization of a clinic template.
+Neogen Plasma treatment landing page for The Langford Skin Clinic, built with Next.js 15, TypeScript, and Tailwind CSS.
+
+- **Domain**: neogennottingham.co.uk
+- **Repository**: https://github.com/leadballoon-agency/neogen-langford.git
 
 ## Development Commands
 
 ```bash
-npm run dev        # Start development server (localhost:3002)
+npm run dev        # Start development server
 npm run build      # Build for production
 npm run lint       # Run ESLint
 ```
 
 ## Architecture
+
+### Routes
+
+| Route | Purpose |
+|-------|---------|
+| `/` | Main landing page (PageWrapper) |
+| `/skin-assessment` | Standalone Fitzpatrick skin type quiz with lead capture |
+| `/privacy-policy` | Privacy policy page (needs content update for Langford) |
+| `/api/contact` | Contact form endpoint (logs only, not wired to email service) |
 
 ### Page Composition
 The main page (`app/page.tsx`) renders a single `PageWrapper` component that orchestrates all sections and manages global state:
@@ -23,7 +35,7 @@ The main page (`app/page.tsx`) renders a single `PageWrapper` component that orc
 - **Video state**: `isVideoModalOpen` controls the video modal
 - **Assessment data**: `assessmentData` passes quiz results to the booking flow
 
-All section components receive an `onBookingClick` prop that triggers the booking modal with `skipToCalendar: true`.
+All section components receive an `onBookingClick` prop that triggers the booking modal.
 
 ### Component Organization
 
@@ -32,45 +44,51 @@ All section components receive an `onBookingClick` prop that triggers the bookin
 - `ResultsGallery`, `Reviews`, `ProcessSection`, `FAQ`, `CTASection`, `Footer`
 - `BookingModal`, `VideoModal`
 
-**Legacy/unused components** (from template):
+**Available but unused**:
+- `StructuredData` - schema.org markup (ready to use but not currently imported)
+
+**Legacy/unused components** (from template, can be deleted):
 - `Hero.tsx`, `HeroSection.tsx`, `Header.tsx`, `CTA.tsx`, `Process.tsx`
 - `Treatment.tsx`, `TreatmentDetails.tsx`, `Benefits.tsx`, `About.tsx`
 - `Results.tsx`, `AssessmentModal.tsx`, `TeamSection.tsx`, `FinanceSection.tsx`
 
-### Analytics Integration
+### Key Content Files
 
-`FacebookPixel.tsx` exports tracking functions used throughout:
+| Content | File |
+|---------|------|
+| SEO metadata & OpenGraph | `app/layout.tsx` |
+| Structured data (schema.org) | `components/StructuredData.tsx` |
+| Practitioner info & image | `components/AboutSection.tsx` |
+| Treatment pricing | `components/PremiumTreatments.tsx` |
+| FAQs | `components/FAQ.tsx` |
+| Reviews | `components/Reviews.tsx` |
+| Contact details | `components/BookingModal.tsx`, `components/Footer.tsx` |
+| Skin assessment quiz config | `app/skin-assessment/page.tsx` (CONFIG object with webhook/booking URLs) |
+
+### Important Notes
+
+- **Louise Langford is NOT a doctor** - the clinic is "doctor-led" but Louise is referred to as "Founder & Neogen Specialist"
+- Louise's image: `/images/louise in clinic.jpg`
+- Video background in ResultsGallery uses Langford Skin Clinic CDN video
+- Contact flow uses WhatsApp/phone/email directly (no form submission)
+- **Privacy policy page** (`/privacy-policy`) still contains template content for "Rachael Katie Cosmetics" - needs updating for Langford
+
+### Integrations
+
+- **Skin Assessment Webhook**: Lead Connector HQ webhook in `app/skin-assessment/page.tsx`
+- **Booking Widget**: Lead Balloon booking widget URLs in assessment page CONFIG
+- **Facebook Pixel**: Loaded via `FacebookPixel.tsx` in layout
+
+### Analytics
+
+`FacebookPixel.tsx` exports tracking functions:
 - `trackAssessmentStart()`, `trackAssessmentComplete()` - Quiz funnel
 - `trackBookingModalOpen()`, `trackPhoneClick()` - Conversion events
 
-Components import and call these directly (e.g., `BookingModal.tsx` calls `trackBookingModalOpen()` on open).
+### Tailwind Theme
 
-### Tailwind Custom Theme
-
-Custom color palette in `tailwind.config.js`:
-- `primary-*`: Deep teal (500: #2a8f73) - main brand color
+Custom colors in `tailwind.config.js`:
+- `primary-*`: Deep teal (500: #2a8f73)
 - `gold-*`: Gold accent (500: #d4912a)
-- `neutral-*`: Grayscale
 
-Custom fonts: `font-display` (Playfair Display) for headings, `font-sans` (Inter) for body.
-
-### SEO Configuration
-
-All metadata in `app/layout.tsx`:
-- OpenGraph, Twitter cards configured
-- Structured data via `StructuredData.tsx`
-- Dynamic `sitemap.ts` and `robots.ts`
-
-### Contact Methods
-
-The booking flow directs users to WhatsApp, phone, or email (no form submission to API). The `/api/contact/route.ts` endpoint exists but currently only logs submissions.
-
-## Customization for New Clinics
-
-When duplicating for another clinic, update:
-
-1. **Branding**: `app/layout.tsx` (metadata, title), `tailwind.config.js` (colors)
-2. **Contact**: `BookingModal.tsx` (WhatsApp, phone, email), `Footer.tsx`
-3. **Content**: Component copy in `PremiumHero.tsx`, `AboutSection.tsx`, `FAQ.tsx`
-4. **Analytics**: `FacebookPixel.tsx` (pixel ID)
-5. **Images**: `/public/images/` (logos, before/after gallery)
+Fonts: `font-display` (Playfair Display) for headings, `font-sans` (Inter) for body.
