@@ -87,8 +87,11 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
                 className="group relative rounded-xl sm:rounded-2xl overflow-hidden shadow-premium hover:shadow-premium-lg transition-all duration-300 cursor-pointer"
                 onClick={() => setIsModelDayModalOpen(true)}
               >
-                {/* Gradient Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gold-400 via-gold-500 to-primary-500"></div>
+                {/* Solid Primary Background */}
+                <div className="absolute inset-0 bg-primary-500"></div>
+
+                {/* Subtle lighter gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10"></div>
 
                 {/* Animated Shimmer Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
@@ -122,7 +125,7 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
 
                   {/* CTA Button */}
                   <div className="text-center mt-6">
-                    <span className="inline-flex items-center bg-white text-primary-600 px-6 py-2.5 sm:px-8 sm:py-3 rounded-full font-semibold text-sm sm:text-base group-hover:shadow-lg transition-all duration-300">
+                    <span className="inline-flex items-center bg-white text-primary-500 px-6 py-2.5 sm:px-8 sm:py-3 rounded-full font-semibold text-sm sm:text-base group-hover:shadow-lg transition-all duration-300">
                       Apply Now
                       <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />

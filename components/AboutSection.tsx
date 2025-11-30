@@ -55,11 +55,14 @@ export default function AboutSection({ onBookingClick }: AboutSectionProps) {
               {/* Practitioner Video Thumbnail */}
               <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg mb-6 max-w-md mx-auto">
                 <div className="aspect-[4/5] relative">
-                  <img
-                    src="/images/louise in clinic.jpg"
-                    alt={`${practitioner.name} - ${practitioner.title}`}
+                  <video
+                    muted
+                    playsInline
+                    preload="metadata"
                     className="w-full h-full object-cover"
-                  />
+                  >
+                    <source src="https://storage.googleapis.com/msgsndr/rqUmK56dJu0sV3O0FpnV/media/692ca61e82f4c569bf2e7ebf.mp4#t=0.1" type="video/mp4" />
+                  </video>
                   <div className="absolute inset-0 bg-gradient-to-br from-primary-100/10 to-primary-300/10 pointer-events-none"></div>
 
                   {/* Play Button - Opens Modal */}

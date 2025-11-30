@@ -15,8 +15,8 @@ module.exports = {
           300: '#72e2dd',
           400: '#3accc6',
           500: '#04aa9d',  // Louise's main site color
-          600: '#048a80',
-          700: '#086f68',
+          600: '#039e92',  // Slightly darker, not too dark
+          700: '#03958a',  // Keep it closer to 500
           800: '#0b5854',
           900: '#0e4946',
         },

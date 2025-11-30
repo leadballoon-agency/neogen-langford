@@ -31,20 +31,20 @@ export default function PremiumHero({ onBookingClick, onVideoClick }: PremiumHer
             </div>
 
             {/* Main Heading */}
-            <h1 className="font-display text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+            <h1 className="font-display text-[2rem] sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.15]">
               Revolutionary
               <span className="block gradient-text mt-1 sm:mt-2">Skin Rejuvenation</span>
             </h1>
 
-            <p className="text-sm sm:text-lg md:text-xl text-neutral-600 leading-relaxed max-w-xl mx-auto lg:mx-0 px-2 sm:px-0">
+            <p className="text-[15px] sm:text-lg md:text-xl text-neutral-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
               Experience Neogen Nitrogen Plasma - the non-surgical treatment trusted by Strictly's Shirley Ballas. Doctor-led care at The Langford Skin Clinic.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-1">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2">
               <button
                 onClick={onBookingClick}
-                className="inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-full font-semibold text-base hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-full font-semibold text-[15px] sm:text-base hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
               >
                 Book Consultation
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -53,7 +53,7 @@ export default function PremiumHero({ onBookingClick, onVideoClick }: PremiumHer
               </button>
               <button
                 onClick={onVideoClick}
-                className="inline-flex items-center justify-center border-2 border-gold-500 text-gold-600 px-8 py-4 rounded-full font-semibold text-base hover:bg-gold-50 transition-all duration-300 w-full sm:w-auto group"
+                className="inline-flex items-center justify-center border-2 border-gold-500 text-gold-600 px-6 py-3.5 sm:px-8 sm:py-4 rounded-full font-semibold text-[15px] sm:text-base hover:bg-gold-50 transition-all duration-300 w-full sm:w-auto group"
               >
                 <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
@@ -63,22 +63,22 @@ export default function PremiumHero({ onBookingClick, onVideoClick }: PremiumHer
             </div>
 
             {/* Social Proof - Mobile Optimized with Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-4 pt-2 max-w-xl mx-auto lg:mx-0">
+            <div className="grid grid-cols-4 gap-2 sm:gap-4 pt-4 max-w-md sm:max-w-xl mx-auto lg:mx-0">
               <div className="text-center">
-                <p className="text-xl sm:text-2xl font-bold text-primary-600">👨‍⚕️</p>
-                <p className="text-xs text-neutral-600 whitespace-nowrap">Doctor Led</p>
+                <p className="text-lg sm:text-2xl font-bold text-primary-600">👨‍⚕️</p>
+                <p className="text-[10px] sm:text-xs text-neutral-600">Doctor Led</p>
               </div>
               <div className="text-center">
-                <p className="text-xl sm:text-2xl font-bold text-primary-600">30+</p>
-                <p className="text-xs text-neutral-600 whitespace-nowrap">Years Experience</p>
+                <p className="text-lg sm:text-2xl font-bold text-primary-600">30+</p>
+                <p className="text-[10px] sm:text-xs text-neutral-600">Years Exp</p>
               </div>
               <div className="text-center">
-                <p className="text-xl sm:text-2xl font-bold text-gold-500">⭐</p>
-                <p className="text-xs text-neutral-600 whitespace-nowrap">Shirley Ballas</p>
+                <p className="text-lg sm:text-2xl font-bold text-gold-500">⭐</p>
+                <p className="text-[10px] sm:text-xs text-neutral-600">Shirley Ballas</p>
               </div>
               <div className="text-center">
-                <p className="text-xl sm:text-2xl font-bold text-primary-600">4</p>
-                <p className="text-xs text-neutral-600 whitespace-nowrap">Key Benefits</p>
+                <p className="text-lg sm:text-2xl font-bold text-primary-600">5.0</p>
+                <p className="text-[10px] sm:text-xs text-neutral-600">Google Rating</p>
               </div>
             </div>
           </div>
